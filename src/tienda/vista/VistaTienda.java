@@ -11,6 +11,7 @@ import Empleado.control.GestionEmpleado;
 import java.util.Scanner;
 import producto.vista.VisualizacionProducto;
 import tienda.control.GestionTienda;
+import tienda.control.MenuPrincipal;
 
 /**
  *
@@ -19,30 +20,28 @@ import tienda.control.GestionTienda;
 public class VistaTienda  {
 
  
-    public static void menuPrincipal(Empleado empleado) {
+    public static MenuPrincipal menuPrincipal(Empleado empleado) {
 
         int opcion;
         System.out.println("*****MENU PRINCIPAL*******\n" + "1. Hacer pedido " + "\n" + "2. Modificar un producto " + "\n"
                 + "3.Cambiar contrasenya empleado " + "\n" + "4. Cerrar sesión " + "\n");
         opcion = opcionMenuPrincipal();
+        MenuPrincipal menuPrincipal=null;
         switch (opcion) {
             case 1:
-                VisualizacionProducto.menuHacerPedido();
-                VistaTienda.menuPrincipal(empleado);
+                menuPrincipal=MenuPrincipal.HACER_PEDIDO;
                 break;
             case 2:
-                VisualizacionProducto.menuModificarProducto();
-                VistaTienda.menuPrincipal(empleado);
+                menuPrincipal=MenuPrincipal.MODIFICAR_PRODUCTO;
                 break;
             case 3:
-                GestionEmpleado.cambiarPasswordEmpleado(empleado);
-                VistaTienda.menuPrincipal(empleado);
+                menuPrincipal=MenuPrincipal.CAMBIAR_PASSWORD;
                 break;
             case 4:
-                System.out.println("\n\n\n\n\n");
-                GestionTienda.start();
+                menuPrincipal=MenuPrincipal.CERRAR_SESION;
                 break;
         }
+        return menuPrincipal;
     }
 
     public static int opcionMenuPrincipal() {

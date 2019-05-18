@@ -5,16 +5,88 @@
  */
 package producto.control;
 
+import Empleado.control.GestionEmpleado;
+
 import util.Colors;
 import java.util.*;
 import producto.dao.ProductoDAOImp;
 import producto.dominio.Producto;
+import producto.vista.VisualizacionProducto;
 
 /**
  *
  * @author Marta_08
  */
-public class GestionPedidos  {
+public class GestionPedidos {
+
+    private static List<Producto> factura = new ArrayList<>();
+
+    public static void menuHacerPedido() {
+        int productoDeseado;
+        ProductoDAOImp productoDAOImp = new ProductoDAOImp();
+        switch (VisualizacionProducto.menuHacerPedido()) {
+            case ANYADIR_PRODUCTO:
+                productoDeseado = listarProductos();
+                ProductoEstaFactura(productoDeseado);
+                menuHacerPedido();
+                break;
+            case VISUALIZAR_PRECIO_CESTA:
+                System.out.println(PrecioTotal(factura));
+                menuHacerPedido();
+                break;
+            case IMPRIMIR_FACTURA:
+                mostrarFactura();
+                productoDAOImp.escribirFactura(factura);
+                break;
+            case TERMINAR_PEDIDO:
+                break;
+        }
+
+    }
+
+    public static void menuModificarProducto() {
+        int numProducto;
+        numProducto = listarProductos();
+        switch (VisualizacionProducto.menuModificarProducto()) {
+            case MODIFICAR_NOMBRE_PRODUCTO:
+                modificarNombreProducto(numProducto - 1);
+                break;
+            case MODIFICAR_PRECIO_PRODUCTO:
+                modificarPrecioProducto(numProducto - 1);
+                break;
+            case MODIFICAR_CODIGO_PRODUCTO:
+                modificarCodigoProducto(numProducto - 1);
+                break;
+        }
+
+    }
+
+    public static void mostrarFactura() {
+        System.out.println("-----FACTURA----");
+        for (Producto producto : factura) {
+            System.out.println(producto.toString());
+        }
+        System.out.println(PrecioTotal(factura));
+        System.out.println("Atendido por: " + GestionEmpleado.empleadoActual().getEmpleado_nombre());
+    }
+
+    public static void ProductoEstaFactura(int posicion) {
+        boolean estaFactura = false;
+        for (Producto producto : factura) {
+            if (producto.getProducto_codigo() == obtenerProducto(posicion - 1).getProducto_codigo()) {
+                estaFactura = true;
+            }
+        }
+        if (estaFactura == true) {
+            System.out.println(Colors.RED + "Producto ya anyadido en la factura." + Colors.BLACK);
+            menuHacerPedido();
+        } else {
+            System.out.println(Colors.GREEN + "Producto anyadido a la factura con exito" + Colors.BLACK);
+            factura.add(obtenerProducto(posicion - 1));
+
+        }
+
+    }
 
     public static void modificarNombreProducto(int posicionProducto) {
         List<Producto> productosList = ControladorProducto.leerProductos();

@@ -2,20 +2,20 @@
 [codigo]
 111
 [nombre]
-marta perez
+marta
 [descripcion]
 Placa base de GIGABYTE serie 400 con tecnologia AMD StoreMI
 [precio]
 20.15
 [producto]
 [codigo]
-223
+222
 [nombre]
-ivan perez
+ivan
 [descripcion]
 Disco duro A400 de estado solido de Kingston
 [precio]
-15.5
+12.0
 [producto]
 [codigo]
 333

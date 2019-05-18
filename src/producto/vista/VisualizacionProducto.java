@@ -8,6 +8,8 @@ package producto.vista;
 import Empleado.control.GestionEmpleado;
 import java.util.*;
 import static producto.control.GestionPedidos.*;
+import producto.control.MenuHacerPedido;
+import producto.control.MenuModificarProducto;
 import producto.dao.ProductoDAOImp;
 import producto.dominio.Producto;
 import tienda.vista.VistaTienda;
@@ -21,82 +23,54 @@ public class VisualizacionProducto {
 
     private static List<Producto> factura = new ArrayList<>();
 
-    public static void menuModificarProducto() {
+    public static MenuModificarProducto menuModificarProducto() {
 
         int opcion;
-        int numProducto;
-        numProducto = listarProductos();
+
         System.out.println("*****MENU MODIFICAR PRODUCTO*******\n" + "2.1 Modificar nombre de producto " + "\n" + "2.2 Modificar precio de producto " + "\n"
                 + "2.3 Modificar código de producto " + "\n");
         opcion = opcionMenuModificarProducto();
+        MenuModificarProducto menuModificarProducto = null;
         switch (opcion) {
             case 1:
-                modificarNombreProducto(numProducto - 1);
+                menuModificarProducto = MenuModificarProducto.MODIFICAR_NOMBRE_PRODUCTO;
                 break;
             case 2:
-                modificarPrecioProducto(numProducto - 1);
+                menuModificarProducto = MenuModificarProducto.MODIFICAR_PRECIO_PRODUCTO;
                 break;
             case 3:
-                modificarCodigoProducto(numProducto - 1);
+                menuModificarProducto = MenuModificarProducto.MODIFICAR_CODIGO_PRODUCTO;
                 break;
 
         }
+        return menuModificarProducto;
 
     }
 
-    public static void menuHacerPedido() {
+    public static MenuHacerPedido menuHacerPedido() {
         int opcion;
-        int productoDeseado;
-        ProductoDAOImp productoDAOImp = new ProductoDAOImp();
+
         System.out.println("\n\n*****MENU HACER PEDIDO*******\n" + "1.1 Añadir producto a la cecsta " + "\n" + "1.2 Visualizar precio total de la cesta " + "\n"
                 + "1.3 Imprimir factura " + "\n" + "1.4 Terminar pedido \n");
         opcion = opcionMenuHacerPedido();
-
+        MenuHacerPedido menuHacerPedido = null;
         switch (opcion) {
             case 1:
-                productoDeseado = listarProductos();
-                ProductoEstaFactura(productoDeseado);
-                menuHacerPedido();
+                menuHacerPedido = MenuHacerPedido.ANYADIR_PRODUCTO;
                 break;
             case 2:
-                System.out.println(PrecioTotal(factura));
-                menuHacerPedido();
+                
+                menuHacerPedido = MenuHacerPedido.VISUALIZAR_PRECIO_CESTA;
                 break;
             case 3:
-                mostrarFactura();
-                productoDAOImp.escribirFactura(factura);
+                menuHacerPedido = MenuHacerPedido.IMPRIMIR_FACTURA;
                 break;
-            case 4: 
+            case 4:
+                menuHacerPedido = MenuHacerPedido.TERMINAR_PEDIDO;
                 break;
 
         }
-    }
-
-    public static void mostrarFactura() {
-        System.out.println("-----FACTURA----");
-        for (Producto producto : factura) {
-            System.out.println(producto.toString());
-        }
-        System.out.println(PrecioTotal(factura));
-        System.out.println("Atendido por: " + GestionEmpleado.empleadoActual().getEmpleado_nombre());
-    }
-
-    public static void ProductoEstaFactura(int posicion) {
-        boolean estaFactura = false;
-        for (Producto producto : factura) {
-            if (producto.getProducto_codigo() == obtenerProducto(posicion - 1).getProducto_codigo()) {
-                estaFactura = true;
-            }
-        }
-        if (estaFactura == true) {
-            System.out.println(Colors.RED + "Producto ya anyadido en la factura." + Colors.BLACK);
-            menuHacerPedido();
-        } else {
-            System.out.println(Colors.GREEN + "Producto anyadido a la factura con exito" + Colors.BLACK);
-            factura.add(obtenerProducto(posicion - 1));
-
-        }
-
+        return menuHacerPedido;
     }
 
 }
