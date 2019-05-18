@@ -2,11 +2,11 @@
 [codigo]
 111
 [nombre]
-Angeles
+Mario
 [apellidos]
-Gascon
+Blue
 [contrasenya]
-marta
+1234
 [empleado]
 [codigo]
 112
@@ -15,4 +15,4 @@ Sara
 [apellidos]
 Brown
 [contrasenya]
-33
+336678
