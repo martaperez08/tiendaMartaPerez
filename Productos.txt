@@ -2,7 +2,7 @@
 [codigo]
 111
 [nombre]
-marta
+Gygabyte
 [descripcion]
 Placa base de GIGABYTE serie 400 con tecnologia AMD StoreMI
 [precio]
@@ -11,7 +11,7 @@ Placa base de GIGABYTE serie 400 con tecnologia AMD StoreMI
 [codigo]
 222
 [nombre]
-ivan
+Kingston
 [descripcion]
 Disco duro A400 de estado solido de Kingston
 [precio]
