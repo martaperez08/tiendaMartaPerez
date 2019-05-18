@@ -1,0 +1,9 @@
+----------------------------------------
+Codigo:   111
+Nombre :  marta perez
+ Descripcion:  Placa base de GIGABYTE serie 400 con tecnologia AMD StoreMI
+Precio:  20.15
+----------------------------------------
+
+El precio total de la factura es de : 20.15
+Atendio por: Angeles

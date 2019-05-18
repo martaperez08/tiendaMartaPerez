@@ -1,0 +1,27 @@
+[producto]
+[codigo]
+111
+[nombre]
+marta perez
+[descripcion]
+Placa base de GIGABYTE serie 400 con tecnologia AMD StoreMI
+[precio]
+20.15
+[producto]
+[codigo]
+223
+[nombre]
+ivan perez
+[descripcion]
+Disco duro A400 de estado solido de Kingston
+[precio]
+15.5
+[producto]
+[codigo]
+333
+[nombre]
+angeles
+[descripcion]
+Odenador portatil con Intel Core i5, 8GB RAM, 256GB SSD
+[precio]
+2.2
